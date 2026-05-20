@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="KritiKaKanvas.Shop — Original artworks, prints & custom commissions by Kritika Attre. Where folk roots meet urban energy." />
+  <title>KritiKaKanvas.Shop — Art You Can Take Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Satisfy&family=Special+Elite&family=Raleway:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="shop.css" />
+</head>
+
+<body>
+
+  <!-- ====== NAV ====== -->
+  <nav id="main-nav" class="nav">
+    <a href="index.html" class="nav-logo-link">
+      <div class="nav-logo">KritiKaKanvas<span class="logo-shop">.Shop</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#artist">Artist</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="shop.html" class="nav-shop-active">Shop</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Commission Art</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-btn" id="open-cart" aria-label="Open cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="cart-badge" id="cart-badge" aria-label="Items in cart">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== SHOP HERO ====== -->
+  <section class="shop-hero" id="shop-hero">
+    <!-- Mandala corner decorations -->
+    <img src="images/mandala.png" alt="" class="shop-mandala shop-mandala-tl" aria-hidden="true" />
+    <img src="images/mandala.png" alt="" class="shop-mandala shop-mandala-br" aria-hidden="true" />
+
+    <!-- Dark overlay -->
+    <div class="shop-hero-overlay"></div>
+
+    <!-- Grain texture -->
+    <div class="shop-hero-grain" aria-hidden="true"></div>
+
+    <div class="shop-hero-content">
+      <p class="shop-eyebrow">✦ handcrafted with love ✦</p>
+      <h1 class="shop-title">THE<br>SHOP</h1>
+      <p class="shop-subtitle">Art you can take home</p>
+      <a href="#products" class="shop-hero-cta btn-gold">Browse Collection ↓</a>
+    </div>
+  </section>
+
+  <!-- ====== PRODUCTS ====== -->
+  <section class="products-section" id="products">
+
+    <!-- Block-print pattern divider strip -->
+    <div class="bp-strip" aria-hidden="true"></div>
+
+    <div class="products-header">
+      <h2 class="products-heading">Our Collection</h2>
+      <p class="products-sub">Every piece is made with intention &amp; poured with soul</p>
+    </div>
+
+    <div class="products-filters" role="group" aria-label="Filter products">
+      <button class="filter-btn active" data-filter="all" id="pf-all">All</button>
+      <button class="filter-btn" data-filter="prints" id="pf-prints">Prints</button>
+      <button class="filter-btn" data-filter="originals" id="pf-originals">Originals</button>
+      <button class="filter-btn" data-filter="custom" id="pf-custom">Custom</button>
+      <button class="filter-btn" data-filter="kits" id="pf-kits">Art Kits</button>
+    </div>
+
+    <div class="product-grid" id="product-grid" aria-live="polite"></div>
+
+  </section>
+
+  <!-- ====== FOLK BAND (decorative separator) ====== -->
+  <div class="folk-band" aria-hidden="true">
+    <img src="images/mandala-dark.png" alt="" class="folk-band-mandala folk-band-mandala-l" />
+    <div class="folk-band-text">
+      <span>✦</span> art is a self expression <span>✦</span> rooted in tradition <span>✦</span> made for today
+      <span>✦</span>
+    </div>
+    <img src="images/mandala-dark.png" alt="" class="folk-band-mandala folk-band-mandala-r" />
+  </div>
+
+  <!-- ====== CART DRAWER ====== -->
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" role="dialog">
+    <div class="cart-drawer-header">
+      <div>
+        <h2 class="cart-drawer-title">Your Cart</h2>
+        <span class="cart-item-count" id="cart-item-count">0 items</span>
+      </div>
+      <button class="cart-close" id="close-cart" aria-label="Close cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Empty state -->
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty-icon">🎨</div>
+      <p class="cart-empty-title">Your cart is empty</p>
+      <p class="cart-empty-sub">Add some art to your life!</p>
+      <button class="cart-continue btn-crimson" id="cart-continue-empty">Browse Collection</button>
+    </div>
+
+    <!-- Items list -->
+    <div class="cart-items-list" id="cart-items-list"></div>
+
+    <!-- Footer -->
+    <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <div class="cart-totals">
+        <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+        <div class="cart-row cart-shipping-row"><span>Shipping</span><span class="cart-shipping-note">Calculated at
+            checkout</span></div>
+        <div class="cart-row cart-total-row"><span>Estimated Total</span><span id="cart-grand">₹0</span></div>
+      </div>
+      <a href="checkout.html" class="btn-gold cart-checkout-btn" id="cart-checkout-btn">Proceed to Checkout →</a>
+      <button class="cart-continue-shop" id="cart-continue">← Continue Shopping</button>
+    </div>
+  </aside>
+
+  <!-- ====== TOAST ====== -->
+  <div id="shop-toast" class="shop-toast" role="alert" aria-live="polite">
+    <span class="toast-icon">🛒</span>
+    <span class="toast-msg" id="toast-msg">Added to cart!</span>
+  </div>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">KritiKaKanvas</span>
+      <p class="footer-tag"><em>Art is a self expression.</em></p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/kri.ating_art/" target="_blank" rel="noopener" id="footer-instagram"
+          aria-label="Instagram">
+          <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <radialGradient id="ig-shop" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fd5" /><stop offset=".328" stop-color="#ff543f" />
+              <stop offset=".504" stop-color="#e64771" /><stop offset=".643" stop-color="#d53e91" />
+              <stop offset=".841" stop-color="#c837ab" />
+            </radialGradient>
+            <path fill="url(#ig-shop)"
+              d="M34.017 41.99l-20 .019c-4.4.004-8.003-3.592-8.008-7.992l-.019-20c-.004-4.4 3.592-8.003 7.992-8.008l20-.019c4.4-.004 8.003 3.592 8.008 7.992l.019 20c.005 4.401-3.592 8.004-7.992 8.008z" />
+            <path fill="#fff"
+              d="M24 31c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm6.5-3c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5-.672-1.5-1.5-1.5zm1.5-6H16c-3.309 0-6 2.691-6 6v16c0 3.309 2.691 6 6 6h16c3.309 0 6-2.691 6-6V16c0-3.309-2.691-6-6-6zm4 22c0 2.206-1.794 4-4 4H16c-2.206 0-4-1.794-4-4V16c0-2.206 1.794-4 4-4h16c2.206 0 4 1.794 4 4v16z" />
+          </svg>
+          @kri.ating_art
+        </a>
+        <a href="https://www.youtube.com/@kri.ating_art" target="_blank" rel="noopener" id="footer-youtube"
+          aria-label="YouTube">
+          <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF3D00"
+              d="M43.2 33.9c-.4 2.1-2.1 3.7-4.2 4-3.3.5-8.8 1.1-15 1.1-6.1 0-11.6-.6-15-1.1-2.1-.3-3.8-1.9-4.2-4-.4-2.3-.8-5.7-.8-9.9s.4-7.6.8-9.9c.4-2.1 2.1-3.7 4.2-4C12.3 9.6 17.8 9 24 9c6.2 0 11.6.6 15 1.1 2.1.3 3.8 1.9 4.2 4 .4 2.3.8 5.7.8 9.9s-.4 7.6-.8 9.9z" />
+            <path fill="#fff" d="M20 31.4V16.6L32 24z" />
+          </svg>
+          @kri.ating_art
+        </a>
+        <a href="mailto:attrekritika08@gmail.com" id="footer-email" aria-label="Email">
+          <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M6 40h6V22.5L4 17v21c0 1.1.9 2 2 2z" />
+            <path fill="#34A853" d="M36 40h6c1.1 0 2-.9 2-2V17l-8 5.5z" />
+            <path fill="#FBBC05" d="M36 10v12.5l8-5.5V12c0-2.5-2.8-3.9-4.8-2.4z" />
+            <path fill="#4285F4" d="M12 22.5V10l12 8 12-8v12.5L24 30z" />
+            <path fill="#C5221F" d="M4 12v5.5l8 5.5V10L7.8 9.6C5.8 8.1 4 9.5 4 12z" />
+          </svg>
+          attrekritika08@gmail.com
+        </a>
+      </div>
+      <p class="footer-copy">© 2025 KritiKaKanvas. Made with ❤️ and paint.</p>
+    </div>
+  </footer>
+
+  <script src="shop.js"></script>
+</body>
+
+</html>

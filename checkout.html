@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KritiKaKanvas.Shop — Checkout. Secure your art." />
+  <title>Checkout — KritiKaKanvas.Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Special+Elite&family=Raleway:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="shop.css" />
+</head>
+
+<body>
+
+  <!-- ====== NAV ====== -->
+  <nav id="main-nav" class="nav">
+    <a href="shop.html" class="nav-logo-link">
+      <div class="nav-logo">KritiKaKanvas<span class="logo-shop">.Shop</span></div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="shop.html" class="nav-shop-active">Shop</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Commission Art</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="shop.html" class="cart-btn" aria-label="Back to cart" style="text-decoration:none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== CHECKOUT ====== -->
+  <main class="checkout-page">
+    <div class="checkout-container">
+
+      <!-- Page heading -->
+      <h1 class="checkout-title">Checkout</h1>
+      <p class="checkout-subtitle">You're one step away from owning a piece of art 🎨</p>
+
+      <!-- Empty cart fallback -->
+      <div class="checkout-empty" id="checkout-empty" style="display:none">
+        <p style="color:#888;font-style:italic;font-size:1rem;">Your cart is empty.
+          <a href="shop.html" style="color:#d4a843">Browse the shop ↗</a>
+        </p>
+      </div>
+
+      <!-- Main checkout grid -->
+      <div class="checkout-grid" id="checkout-grid">
+
+        <!-- ── Left: Forms ── -->
+        <div class="checkout-form-col">
+
+          <!-- Shipping Details -->
+          <div class="checkout-section-box">
+            <p class="checkout-section-label">📦 Shipping Details</p>
+            <form id="shipping-form" novalidate>
+              <div class="checkout-form-grid">
+                <div class="form-group">
+                  <label for="co-name">Full Name</label>
+                  <input type="text" id="co-name" name="name" placeholder="Priya Sharma" required />
+                  <span class="fs-field-error" id="err-name"></span>
+                </div>
+                <div class="form-group">
+                  <label for="co-email">Email</label>
+                  <input type="email" id="co-email" name="email" placeholder="you@example.com" required />
+                  <span class="fs-field-error" id="err-email"></span>
+                </div>
+                <div class="form-group">
+                  <label for="co-phone">Phone</label>
+                  <input type="tel" id="co-phone" name="phone" placeholder="+91 98765 43210" required />
+                  <span class="fs-field-error" id="err-phone"></span>
+                </div>
+                <div class="form-group">
+                  <label for="co-pincode">Pincode</label>
+                  <input type="text" id="co-pincode" name="pincode" placeholder="110001" required maxlength="6" />
+                  <span class="fs-field-error" id="err-pincode"></span>
+                </div>
+                <div class="form-group full-width">
+                  <label for="co-address">Street Address</label>
+                  <input type="text" id="co-address" name="address" placeholder="House no., Street, Area" required />
+                  <span class="fs-field-error" id="err-address"></span>
+                </div>
+                <div class="form-group">
+                  <label for="co-city">City</label>
+                  <input type="text" id="co-city" name="city" placeholder="Mumbai" required />
+                </div>
+                <div class="form-group">
+                  <label for="co-state">State</label>
+                  <select id="co-state" name="state">
+                    <option value="">Select state…</option>
+                    <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+                    <option>Chhattisgarh</option><option>Delhi</option><option>Goa</option>
+                    <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+                    <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                    <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+                    <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option>
+                    <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+                    <option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
+                    <option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option>
+                    <option>West Bengal</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Payment -->
+          <div class="checkout-section-box">
+            <p class="checkout-section-label">💳 Payment Method</p>
+
+            <div class="payment-methods">
+
+              <!-- COD -->
+              <label class="payment-option" id="pm-cod" for="pay-cod">
+                <input type="radio" name="payment" id="pay-cod" value="cod" checked />
+                <div class="payment-option-label">
+                  <span class="payment-option-name">💵 Cash on Delivery</span>
+                  <span class="payment-option-sub">Pay when your art arrives at your door</span>
+                </div>
+              </label>
+
+              <!-- UPI -->
+              <label class="payment-option" id="pm-upi" for="pay-upi">
+                <input type="radio" name="payment" id="pay-upi" value="upi" />
+                <div class="payment-option-label">
+                  <span class="payment-option-name">📱 UPI</span>
+                  <span class="payment-option-sub">GPay, PhonePe, Paytm, BHIM</span>
+                </div>
+                <span class="payment-coming-soon">Coming Soon</span>
+              </label>
+              <div class="payment-fields" id="upi-fields" style="display:none">
+                <div class="form-group full-width" style="grid-column:1/-1">
+                  <label for="co-upi">UPI ID</label>
+                  <input type="text" id="co-upi" placeholder="yourname@upi" disabled />
+                </div>
+              </div>
+
+              <!-- Card -->
+              <label class="payment-option" id="pm-card" for="pay-card">
+                <input type="radio" name="payment" id="pay-card" value="card" />
+                <div class="payment-option-label">
+                  <span class="payment-option-name">💳 Credit / Debit Card</span>
+                  <span class="payment-option-sub">Visa, Mastercard, RuPay</span>
+                </div>
+                <span class="payment-coming-soon">Coming Soon</span>
+              </label>
+              <div class="payment-fields" id="card-fields" style="display:none">
+                <div class="form-group full-width" style="grid-column:1/-1">
+                  <label for="co-card-num">Card Number</label>
+                  <input type="text" id="co-card-num" placeholder="•••• •••• •••• ••••" maxlength="19" disabled />
+                </div>
+                <div class="form-group">
+                  <label for="co-expiry">Expiry</label>
+                  <input type="text" id="co-expiry" placeholder="MM / YY" maxlength="7" disabled />
+                </div>
+                <div class="form-group">
+                  <label for="co-cvv">CVV</label>
+                  <input type="text" id="co-cvv" placeholder="•••" maxlength="3" disabled />
+                </div>
+              </div>
+
+            </div>
+
+            <p class="payment-secure-note">🔒 Payment gateway integration coming soon. Orders placed now will be
+              confirmed via email within 24 hours.</p>
+          </div>
+
+        </div>
+
+        <!-- ── Right: Order Summary ── -->
+        <div class="checkout-summary-col">
+          <div class="summary-box">
+            <h2 class="summary-title">Order Summary</h2>
+
+            <div class="summary-items" id="summary-items">
+              <!-- JS rendered -->
+            </div>
+
+            <hr class="summary-divider" />
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="summary-subtotal">₹0</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span id="summary-shipping" class="summary-free-shipping">FREE ✓</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>Total</span>
+              <span id="summary-total">₹0</span>
+            </div>
+
+            <!-- Place Order -->
+            <button class="btn-gold btn-place-order" id="btn-place-order">
+              Place Order →
+            </button>
+
+            <!-- Trust signals -->
+            <div class="summary-trust">
+              <div class="trust-item">🎨 Handmade</div>
+              <div class="trust-item">📦 Safe Packaging</div>
+              <div class="trust-item">✉️ Updates via email</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Order Confirmed state -->
+      <div class="order-confirmed" id="order-confirmed">
+        <div class="order-confirmed-icon">🎉</div>
+        <h2 class="order-confirmed-title">Order Received!</h2>
+        <p class="order-confirmed-sub">
+          Thank you! Kritika will reach out within 24 hours to confirm your order details.<br />
+          Check your email for a copy of this order.
+        </p>
+        <a href="shop.html" class="btn-gold" style="display:inline-block;margin-top:2rem;padding:0.85rem 2rem;">
+          ← Back to Shop
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">KritiKaKanvas</span>
+      <p class="footer-tag"><em>Art is a self expression.</em></p>
+      <p class="footer-copy">© 2025 KritiKaKanvas. Made with ❤️ and paint.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Load cart from localStorage ── */
+    const CART_KEY = 'kkc-cart';
+    const cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+    const badge = document.getElementById('cart-badge');
+    if (badge) badge.textContent = cart.reduce((s, i) => s + i.qty, 0);
+
+    /* ── Render order summary ── */
+    function renderSummary() {
+      const itemsEl    = document.getElementById('summary-items');
+      const subtotalEl = document.getElementById('summary-subtotal');
+      const shippingEl = document.getElementById('summary-shipping');
+      const totalEl    = document.getElementById('summary-total');
+      const grid       = document.getElementById('checkout-grid');
+      const emptyEl    = document.getElementById('checkout-empty');
+
+      if (cart.length === 0) {
+        if (grid)    grid.style.display    = 'none';
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const shipping = subtotal >= 999 ? 0 : 99;
+      const total    = subtotal + shipping;
+
+      if (itemsEl) {
+        itemsEl.innerHTML = cart.map(item => `
+          <div class="summary-item">
+            ${item.img
+              ? `<img src="${item.img}" alt="${item.name}" class="summary-item-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                 <div class="summary-item-img-ph" style="display:none">${item.emoji || '🎨'}</div>`
+              : `<div class="summary-item-img-ph">${item.emoji || '🎨'}</div>`
+            }
+            <div>
+              <div class="summary-item-name">${item.name}</div>
+              <div class="summary-item-qty">Qty: ${item.qty}</div>
+            </div>
+            <div class="summary-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+          </div>`).join('');
+      }
+
+      if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      if (shippingEl) {
+        shippingEl.textContent = shipping === 0 ? 'FREE ✓' : `₹${shipping}`;
+        shippingEl.className   = shipping === 0 ? 'summary-free-shipping' : '';
+      }
+      if (totalEl) totalEl.textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
+
+    renderSummary();
+
+    /* ── Payment method toggle ── */
+    document.querySelectorAll('input[name="payment"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.getElementById('upi-fields').style.display  = radio.value === 'upi'  ? 'grid' : 'none';
+        document.getElementById('card-fields').style.display = radio.value === 'card' ? 'grid' : 'none';
+      });
+    });
+
+    /* ── Form validation & place order ── */
+    document.getElementById('btn-place-order')?.addEventListener('click', () => {
+      const name    = document.getElementById('co-name')?.value.trim();
+      const email   = document.getElementById('co-email')?.value.trim();
+      const phone   = document.getElementById('co-phone')?.value.trim();
+      const address = document.getElementById('co-address')?.value.trim();
+      const city    = document.getElementById('co-city')?.value.trim();
+      const pincode = document.getElementById('co-pincode')?.value.trim();
+
+      let valid = true;
+      const setErr = (id, msg) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = msg;
+        if (msg) valid = false;
+      };
+
+      setErr('err-name',    name    ? '' : 'Please enter your name');
+      setErr('err-email',   /\S+@\S+\.\S+/.test(email) ? '' : 'Enter a valid email');
+      setErr('err-phone',   /^\+?[\d\s\-]{8,}$/.test(phone) ? '' : 'Enter a valid phone number');
+      setErr('err-address', address ? '' : 'Please enter your address');
+      setErr('err-pincode', /^\d{6}$/.test(pincode) ? '' : '6-digit pincode required');
+
+      if (!valid) return;
+
+      // Clear cart
+      localStorage.removeItem(CART_KEY);
+
+      // Show confirmation
+      document.getElementById('checkout-grid').style.display    = 'none';
+      document.querySelector('.checkout-title').style.display   = 'none';
+      document.querySelector('.checkout-subtitle').style.display = 'none';
+      document.getElementById('order-confirmed').classList.add('visible');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav?.classList.toggle('scrolled', window.scrollY > 60));
+
+    /* ── Hamburger ── */
+    document.getElementById('hamburger')?.addEventListener('click', () => {
+      document.getElementById('nav-links')?.classList.toggle('open');
+    });
+  </script>
+
+</body>
+
+</html>
