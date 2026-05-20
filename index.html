@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="KritiKaKanvas — Personalised artworks that scream YOU. Custom commissions, portraits, mandala, and more by Kritika Attre." />
+  <title>KritiKaKanvas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Satisfy&family=Special+Elite&family=Raleway:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav" class="nav">
+    <div class="nav-logo">KritiKaKanvas</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#artist">Artist</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact" class="nav-cta">Commission Art</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section id="hero" class="hero">
+    <img src="images/hero-rug.jpg" alt="Persian rug" class="hero-rug" />
+    <div class="hero-overlay"></div>
+
+    <img src="images/mandala.png" alt="" class="mandala mandala-tr" aria-hidden="true" />
+    <img src="images/mandala.png" alt="" class="mandala mandala-bl" aria-hidden="true" />
+
+    <div class="hero-content">
+      <h1 class="hero-art">ART</h1>
+      <p class="hero-tagline">is a self expression</p>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about" class="about">
+    <div class="about-inner">
+      <h2 class="about-heading">And here we create the artworks that scream <em>YOU!</em></h2>
+      <p class="about-body">
+        A place that curates ordinary pieces into a piece of artwork that tells your story, what
+        you like or dislike, a colour you love, your favourite cartoon/movie character, an old
+        memory engraved deeply into your heart or your idol. It can be anything and everything
+        about you. Here, art is not found just on a traditional canvas but anything around you
+        can be turned into a canvas that tells who <strong>YOU</strong> are and what your story is.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== ARTIST / WHO ====== -->
+  <section id="artist" class="artist">
+    <div class="artist-left">
+      <div class="artist-heading">
+        <span class="who-text">who</span>
+        <span class="behind-text">IS BEHIND<br>THE PAGE?</span>
+      </div>
+      <div class="artist-photo-wrap">
+        <img src="images/cat-portrait.png" alt="Kritika's cat companion" class="artist-photo" />
+      </div>
+    </div>
+
+    <div class="artist-right">
+      <p class="artist-hi">Hi!</p>
+      <p class="artist-bio">
+        I am <strong class="artist-name">KRITIKA ATTRE</strong>,<br>
+        the artist behind the page. A self-taught
+        artist who polished her skills over the
+        years through consistent practice. So its
+        not just pure talent but hardwork too.
+        This artist is obsessed over details
+        (maybe cats too, hehe) and loves
+        challenging her limits with every piece of
+        art she creates. She pours her heart in her
+        every work.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ====== GALLERY ====== -->
+  <section id="gallery" class="gallery">
+    <div class="gallery-header">
+      <h2 class="gallery-title">Portfolio</h2>
+      <p class="gallery-sub">Every piece tells a unique story</p>
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+        <button class="filter-btn" data-filter="portrait" id="filter-portrait">Portraits</button>
+        <button class="filter-btn" data-filter="mandala" id="filter-mandala">Mandala</button>
+        <button class="filter-btn" data-filter="custom" id="filter-custom">Custom</button>
+      </div>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <!-- ====== PROCESS ====== -->
+  <section id="process" class="process">
+    <h2 class="process-title">How It Works</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-icon">💬</div>
+        <h3>Tell Your Story</h3>
+        <p>Share your vision — memories, colours, characters — anything uniquely <em>you</em>.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-icon">✏️</div>
+        <h3>Sketch & Review</h3>
+        <p>An initial concept is sketched and shared with you before any paint touches canvas.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-icon">🎨</div>
+        <h3>Create & Craft</h3>
+        <p>Every detail is lovingly crafted with care and emotion poured into each stroke.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-icon">📦</div>
+        <h3>Delivered to You</h3>
+        <p>Your masterpiece is carefully packaged and delivered right to your door.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact" class="contact">
+    <div class="contact-mandala-deco" aria-hidden="true">
+      <img src="images/mandala.png" alt="" />
+    </div>
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2 class="contact-title">Commission Your Story</h2>
+        <p class="contact-sub">Fill in the form and I'll reach out within 24 hours to discuss your vision.</p>
+      </div>
+
+
+      <form class="contact-form" id="commission-form">
+        <!-- Formspree config fields -->
+        <input type="hidden" name="_subject" value="✨ New Commission Request — KritiKaKanvas" />
+        <input type="hidden" name="_replyto" value="" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Priya Sharma" required data-fs-field />
+            <span class="fs-field-error" data-fs-error="name"></span>
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" placeholder="you@example.com" required data-fs-field />
+            <span class="fs-field-error" data-fs-error="email"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-type">Type of Artwork</label>
+          <select id="f-type" name="type" data-fs-field>
+            <option value="">Select…</option>
+            <option>Portrait</option>
+            <option>Couple / Family Portrait</option>
+            <option>Pet Portrait</option>
+            <option>Mandala</option>
+            <option>Abstract</option>
+            <option>Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-story">Tell Me Your Story</label>
+          <textarea id="f-story" name="story" rows="5" placeholder="Share your vision…" required
+            data-fs-field></textarea>
+          <span class="fs-field-error" data-fs-error="story"></span>
+        </div>
+        <!-- Formspree banners inside the form -->
+        <div data-fs-success class="fs-success" id="fs-success"></div>
+        <div data-fs-error class="fs-error" id="fs-error"></div>
+        <button type="submit" id="btn-submit" class="btn-gold" data-fs-submit-btn>Send My Story →</button>
+      </form>
+
+      <!-- Formspree init -->
+      <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#commission-form', formId: 'xpqnaboz' });
+      </script>
+      <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">KritiKaKanvas</span>
+      <p class="footer-tag"><em>Art is a self expression.</em></p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/kri.ating_art/" target="_blank" rel="noopener" id="footer-instagram"
+          aria-label="Instagram">
+          <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <radialGradient id="ig2" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fd5" />
+              <stop offset=".328" stop-color="#ff543f" />
+              <stop offset=".504" stop-color="#e64771" />
+              <stop offset=".643" stop-color="#d53e91" />
+              <stop offset=".841" stop-color="#c837ab" />
+            </radialGradient>
+            <path fill="url(#ig2)"
+              d="M34.017 41.99l-20 .019c-4.4.004-8.003-3.592-8.008-7.992l-.019-20c-.004-4.4 3.592-8.003 7.992-8.008l20-.019c4.4-.004 8.003 3.592 8.008 7.992l.019 20c.005 4.401-3.592 8.004-7.992 8.008z" />
+            <path fill="#fff"
+              d="M24 31c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm6.5-3c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5-.672-1.5-1.5-1.5zm1.5-6H16c-3.309 0-6 2.691-6 6v16c0 3.309 2.691 6 6 6h16c3.309 0 6-2.691 6-6V16c0-3.309-2.691-6-6-6zm4 22c0 2.206-1.794 4-4 4H16c-2.206 0-4-1.794-4-4V16c0-2.206 1.794-4 4-4h16c2.206 0 4 1.794 4 4v16z" />
+          </svg>
+          @kri.ating_art
+        </a>
+        <a href="https://www.youtube.com/@kri.ating_art" target="_blank" rel="noopener" id="footer-youtube"
+          aria-label="YouTube">
+          <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF3D00"
+              d="M43.2 33.9c-.4 2.1-2.1 3.7-4.2 4-3.3.5-8.8 1.1-15 1.1-6.1 0-11.6-.6-15-1.1-2.1-.3-3.8-1.9-4.2-4-.4-2.3-.8-5.7-.8-9.9s.4-7.6.8-9.9c.4-2.1 2.1-3.7 4.2-4C12.3 9.6 17.8 9 24 9c6.2 0 11.6.6 15 1.1 2.1.3 3.8 1.9 4.2 4 .4 2.3.8 5.7.8 9.9s-.4 7.6-.8 9.9z" />
+            <path fill="#fff" d="M20 31.4V16.6L32 24z" />
+          </svg>
+          @kri.ating_art
+        </a>
+        <a href="mailto:attrekritika08@gmail.com" id="footer-email" aria-label="Email">
+          <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M6 40h6V22.5L4 17v21c0 1.1.9 2 2 2z" />
+            <path fill="#34A853" d="M36 40h6c1.1 0 2-.9 2-2V17l-8 5.5z" />
+            <path fill="#FBBC05" d="M36 10v12.5l8-5.5V12c0-2.5-2.8-3.9-4.8-2.4z" />
+            <path fill="#4285F4" d="M12 22.5V10l12 8 12-8v12.5L24 30z" />
+            <path fill="#C5221F" d="M4 12v5.5l8 5.5V10L7.8 9.6C5.8 8.1 4 9.5 4 12z" />
+          </svg>
+          attrekritika08@gmail.com
+        </a>
+      </div>
+      <p class="footer-copy">© 2025 KritiKaKanvas. Made with ❤️ and paint.</p>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <span class="toast-icon">🎨</span>
+    <span class="toast-msg">Message sent! I'll be in touch soon.</span>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
