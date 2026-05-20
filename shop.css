@@ -46,6 +46,11 @@
   border-radius: 2px;
 }
 
+/* Prevent Commission Art pill from wrapping */
+.nav-cta {
+  white-space: nowrap;
+}
+
 /* Cart button + badge */
 .nav-right {
   display: flex;
@@ -108,7 +113,7 @@
   justify-content: flex-start;
   overflow: hidden;
   /* Hero image — place images/shop-hero.jpg in the images/ folder */
-  background-image: url('images/shop-hero.jpg');
+  background-image: url('images/shop-hero.png');
   background-size: cover;
   background-position: center top;
   background-color: #0a0814;
@@ -1261,6 +1266,56 @@
 
   .payment-fields {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ── Tablet: collapse nav into hamburger at 860px ── */
+@media (max-width: 860px) {
+  /* Hide nav links — hamburger takes over */
+  .nav .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 28, 0.97);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 1rem 0;
+    z-index: 999;
+  }
+
+  .nav .nav-links.open {
+    display: flex;
+  }
+
+  .nav .nav-links li {
+    width: 100%;
+    text-align: center;
+    padding: 0.1rem 0;
+  }
+
+  .nav .nav-links a {
+    display: block;
+    padding: 0.6rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .nav .nav-links .nav-cta {
+    margin: 0.5rem auto;
+    display: inline-block;
+    padding: 0.5rem 1.8rem !important;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* Reduce nav padding */
+  .nav {
+    padding: 1rem 1.4rem;
   }
 }
 
