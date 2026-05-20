@@ -115,7 +115,7 @@
   /* Hero image — place images/shop-hero.jpg in the images/ folder */
   background-image: url('images/shop-hero.png');
   background-size: cover;
-  background-position: center top;
+  background-position: center 60%;
   background-color: #0a0814;
 }
 
@@ -124,9 +124,9 @@
   inset: 0;
   background: linear-gradient(
     120deg,
-    rgba(0, 0, 0, 0.75) 0%,
-    rgba(10, 8, 20, 0.5) 55%,
-    rgba(107, 0, 0, 0.35) 100%
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(10, 8, 20, 0.55) 50%,
+    rgba(107, 0, 0, 0.42) 100%
   );
 }
 
@@ -1266,6 +1266,25 @@
 
   .payment-fields {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ── Desktop: portrait image sits right at natural proportions ── */
+@media (min-width: 861px) {
+  .shop-hero {
+    background-size: auto 105%;
+    background-position: right center;
+  }
+
+  /* Gradient sweeps left→right so text stays readable */
+  .shop-hero-overlay {
+    background: linear-gradient(
+      100deg,
+      rgba(0, 0, 0, 0.93) 0%,
+      rgba(10, 8, 20, 0.82) 38%,
+      rgba(10, 8, 20, 0.38) 62%,
+      rgba(107, 0, 0, 0.18) 100%
+    );
   }
 }
 
