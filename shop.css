@@ -112,8 +112,8 @@
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
-  /* Hero image — place images/shop-hero.jpg in the images/ folder */
-  background-image: url('images/shop-hero.png');
+  /* Hero image — place images/shop-hero.jpg in the images/shop/ folder */
+  background-image: url('images/shop/shop-hero.png');
   background-size: cover;
   background-position: center 60%;
   background-color: #0a0814;
@@ -307,19 +307,16 @@
 /* ===== PRODUCT CARD ===== */
 
 .product-card {
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--card-bg);
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important; /* Critical to prevent 3D rotation clipping */
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
-  /* Block-print double frame */
-  box-shadow:
-    0 0 0 1px  rgba(212, 168, 67, 0.16),
-    0 0 0 3px  rgba(18, 18, 31, 0.95),
-    0 0 0 4px  rgba(212, 168, 67, 0.06);
   animation: cardIn 0.45s ease both;
+  position: relative;
+  text-decoration: none;
 }
 
 @keyframes cardIn {
@@ -328,88 +325,135 @@
 }
 
 .product-card:hover {
-  transform: translateY(-7px);
-  box-shadow:
-    0 24px 55px rgba(0, 0, 0, 0.6),
-    0 0 0 1.5px rgba(212, 168, 67, 0.5),
-    0 0 0 3px   rgba(18, 18, 31, 0.95),
-    0 0 0 5px   rgba(212, 168, 67, 0.18);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
-/* Image wrap */
-.product-img-wrap {
-  position: relative;
-  aspect-ratio: 4/3;
+/* Custom styles for product card details (back side) */
+.product-back-story-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4a843; /* Gold Leaf */
+  margin-top: 0.2rem;
+  letter-spacing: 0.03em;
+}
+
+.product-back-story-body {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: #c8c0b5;
+  margin: 0.8rem 0;
+  font-style: italic;
+  max-width: 95%;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  background: #0d0d1a;
 }
 
-.product-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.55s ease;
-}
-
-.product-card:hover .product-img-wrap img {
-  transform: scale(1.06);
-}
-
-/* Placeholder when image missing */
-.product-img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.5rem;
-  gap: 0.5rem;
-  transition: transform 0.55s ease;
-}
-
-.product-card:hover .product-img-placeholder {
-  transform: scale(1.04);
-}
-
-.product-img-placeholder span.ph-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.35);
-  font-family: 'Special Elite', monospace;
-}
-
-/* Badge */
-.product-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--terracotta);
-  color: #fff;
-  font-family: 'Special Elite', monospace;
+.product-back-tag {
   font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.25rem 0.65rem;
-  border-radius: 4px;
-  font-weight: 700;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  /* stamp press feel */
-  transform: rotate(-2deg);
+  color: #d4a843;
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
 }
 
-.product-badge.badge-bestseller { background: var(--terracotta); }
-.product-badge.badge-new        { background: #2e7d32; }
-.product-badge.badge-limited    { background: #6b0000; }
-.product-badge.badge-original   { background: #1565c0; }
-.product-badge.badge-order      { background: #4a148c; transform: rotate(0deg); }
-.product-badge.badge-fave       { background: #bf360c; }
+/* Premium Uiverse.io Hand-Pressed Dynamic Add to Cart Button */
+.btn-add-cart-uiverse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 22px;
+  color: #1b2747;
+  text-shadow: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid #d4a843;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 11.5px;
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(135deg, #b8860b, #d4a843, #e8c070);
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  transition: all 0.5s ease;
+  box-shadow: 0 4px 15px rgba(212, 168, 67, 0.2);
+  outline: none;
+}
+
+.btn-add-cart-uiverse:active {
+  transform: scale(0.93);
+  transition: all 100ms ease;
+}
+
+.cat-avatar {
+  position: absolute;
+  left: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #1b2747;
+  background-image: url('images/gallery/real-cat.png');
+  background-size: 100% 200%; /* double height to fit both panels */
+  background-position: top center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  z-index: 1; /* Pushed behind text for clean layering */
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  background-color: #fff; /* white background behind cutouts */
+  transform: scale(0);
+  opacity: 0;
+}
+
+.play {
+  transition: all 0.5s ease;
+  transition-delay: 200ms;
+  z-index: 2;
+}
+
+.btn-add-cart-uiverse:hover .cat-avatar {
+  transform: scale(2.0) translateX(32px); /* zoom and translate to the right */
+  opacity: 0.65; /* Slight mask out (blends as soft watermark background) */
+  background-position: bottom center; /* Switch instantly to the meowing face! */
+}
+
+.now {
+  position: absolute;
+  left: 20px; /* Shifted slightly to the right for clear centering */
+  transform: translateX(-150%);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 3; /* Always on top of masked cat */
+  color: #1b2747; /* Contrasting brand dark blue */
+  font-weight: 800;
+  text-shadow: none; /* Cleaner, high-end look */
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.btn-add-cart-uiverse:hover .now {
+  transform: translateX(0);
+  transition-delay: 150ms;
+}
+
+.btn-add-cart-uiverse:hover .play {
+  transform: translateX(200%);
+  transition-delay: 150ms;
+}
 
 /* Card body */
 .product-info {
-  padding: 1.1rem 1.2rem 1.3rem;
+  padding: 1.1rem 0.2rem 1.3rem; /* slightly adjusted side padding to account for straight borderless card */
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -418,7 +462,7 @@
 
 .product-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: #e8e0d0;
   font-weight: 700;
   line-height: 1.3;
@@ -446,40 +490,6 @@
   color: var(--gold);
   letter-spacing: 0.04em;
   line-height: 1;
-}
-
-.product-price-original {
-  font-size: 0.78rem;
-  color: rgba(212, 168, 67, 0.45);
-  text-decoration: line-through;
-  margin-left: 0.3rem;
-  font-family: 'Lora', serif;
-  vertical-align: middle;
-}
-
-.btn-add-cart {
-  background: linear-gradient(135deg, #7b0000, #b22222);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 22px;
-  font-family: 'Special Elite', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.25s;
-  white-space: nowrap;
-  box-shadow: 0 3px 12px rgba(120, 0, 0, 0.4);
-}
-
-.btn-add-cart:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(120, 0, 0, 0.55);
-  background: linear-gradient(135deg, #9b0000, #c42222);
-}
-
-.btn-add-cart:active {
-  transform: scale(0.96);
 }
 
 /* ===== FOLK BAND ===== */
@@ -1365,3 +1375,229 @@
     padding: 100px 1rem 3rem;
   }
 }
+
+/* ============================================================
+   🎨 TACTILE HAND-CRAFTED ARTISANAL UI UPGRADES
+   ============================================================ */
+
+/* Hand-stamped filter pills */
+.products-filters .filter-btn {
+  border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px !important;
+}
+
+/* Hand-pressed tactile buttons */
+.btn-gold,
+.btn-crimson,
+.cart-checkout-btn,
+#btn-place-order,
+.cart-continue,
+.cart-continue-shop {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px !important;
+}
+
+/* ============================================================
+   🖼️ PREMIUM VIRTUAL CANVAS WALL-LIGHTBOX SYSTEM
+   ============================================================ */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 7, 13, 0.88);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lightbox-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(1rem, 4vw, 2.5rem);
+  right: clamp(1rem, 4vw, 2.5rem);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  color: #d4a843;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox-close:hover {
+  background: rgba(212, 168, 67, 0.15);
+  transform: scale(1.08) rotate(90deg);
+  border-color: #d4a843;
+}
+
+.lightbox-content {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10000;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox-overlay.open .lightbox-content {
+  transform: translateY(0) scale(1);
+}
+
+/* Wall Spotlight Ambient Glow Effect */
+.lightbox-wall-glow {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 168, 67, 0.15) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Framed Canvas 3D Perspective Container */
+.canvas-frame-container {
+  perspective: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* 3D shadow box/wood canvas frame */
+.canvas-wood-frame {
+  position: relative;
+  background: #14110f; /* Matte black charcoal wood color */
+  border: 14px solid #1c1815; /* Heavy wood frame border width */
+  box-shadow: 
+    inset 0 0 0 2px rgba(212, 168, 67, 0.4), /* Inner Gold Bevel line */
+    0 15px 40px rgba(0, 0, 0, 0.85), /* Drop shadow on the wall */
+    0 5px 15px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Stretched linen fabric grain blended on top */
+.canvas-texture-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='canvas-shop'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23canvas-shop)'/%3E%3C/svg%3E");
+}
+
+/* Subtle inner vignette shadow inside frame */
+.canvas-inner-shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+  z-index: 3;
+}
+
+.lightbox-framed-img {
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+  z-index: 1;
+}
+
+/* Text and details layout below the frame */
+.lightbox-details {
+  text-align: center;
+  max-width: 600px;
+  animation: detailsFade 0.6s ease both;
+  animation-delay: 0.15s;
+}
+
+@keyframes detailsFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lightbox-art-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #d4a843; /* Gold accent */
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.lightbox-art-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(0.85rem, 2.5vw, 0.98rem);
+  line-height: 1.7;
+  color: #c8c0b5;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.lightbox-art-tag {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #d4a843;
+  border: 1px solid rgba(212, 168, 67, 0.35);
+  padding: 0.3rem 1.1rem;
+  border-radius: 30px;
+  background: rgba(212, 168, 67, 0.05);
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .canvas-wood-frame {
+    border-width: 8px;
+    max-height: 40vh;
+  }
+  .lightbox-framed-img {
+    max-height: 38vh;
+  }
+}
+
+/* Gold Outline View Framed CTA button on Card Backs */
+.btn-view-framed {
+  background: transparent !important;
+  border: 1px solid #d4a843 !important;
+  color: #d4a843 !important;
+  box-shadow: 0 4px 12px rgba(212, 168, 67, 0.15) !important;
+}
+
+.btn-view-framed:hover {
+  background: rgba(212, 168, 67, 0.12) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(212, 168, 67, 0.35) !important;
+}
+
+

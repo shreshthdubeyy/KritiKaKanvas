@@ -55,8 +55,8 @@
   <!-- ====== SHOP HERO ====== -->
   <section class="shop-hero" id="shop-hero">
     <!-- Mandala corner decorations -->
-    <img src="images/mandala.png" alt="" class="shop-mandala shop-mandala-tl" aria-hidden="true" />
-    <img src="images/mandala.png" alt="" class="shop-mandala shop-mandala-br" aria-hidden="true" />
+    <img src="images/hero/mandala.png" alt="" class="shop-mandala shop-mandala-tl" aria-hidden="true" />
+    <img src="images/hero/mandala.png" alt="" class="shop-mandala shop-mandala-br" aria-hidden="true" />
 
     <!-- Dark overlay -->
     <div class="shop-hero-overlay"></div>
@@ -68,7 +68,6 @@
       <p class="shop-eyebrow">✦ handcrafted with love ✦</p>
       <h1 class="shop-title">THE<br>SHOP</h1>
       <p class="shop-subtitle">Art you can take home</p>
-      <a href="#products" class="shop-hero-cta btn-gold">Browse Collection ↓</a>
     </div>
   </section>
 
@@ -97,12 +96,12 @@
 
   <!-- ====== FOLK BAND (decorative separator) ====== -->
   <div class="folk-band" aria-hidden="true">
-    <img src="images/mandala-dark.png" alt="" class="folk-band-mandala folk-band-mandala-l" />
+    <img src="images/shop/mandala-dark.png" alt="" class="folk-band-mandala folk-band-mandala-l" />
     <div class="folk-band-text">
       <span>✦</span> art is a self expression <span>✦</span> rooted in tradition <span>✦</span> made for today
       <span>✦</span>
     </div>
-    <img src="images/mandala-dark.png" alt="" class="folk-band-mandala folk-band-mandala-r" />
+    <img src="images/shop/mandala-dark.png" alt="" class="folk-band-mandala folk-band-mandala-r" />
   </div>
 
   <!-- ====== CART DRAWER ====== -->
@@ -181,7 +180,7 @@
           </svg>
           @kri.ating_art
         </a>
-        <a href="mailto:attrekritika08@gmail.com" id="footer-email" aria-label="Email">
+        <a href="mailto:kritikakanvas@gmail.com" id="footer-email" aria-label="Email">
           <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path fill="#EA4335" d="M6 40h6V22.5L4 17v21c0 1.1.9 2 2 2z" />
             <path fill="#34A853" d="M36 40h6c1.1 0 2-.9 2-2V17l-8 5.5z" />
@@ -189,12 +188,38 @@
             <path fill="#4285F4" d="M12 22.5V10l12 8 12-8v12.5L24 30z" />
             <path fill="#C5221F" d="M4 12v5.5l8 5.5V10L7.8 9.6C5.8 8.1 4 9.5 4 12z" />
           </svg>
-          attrekritika08@gmail.com
+          kritikakanvas@gmail.com
         </a>
       </div>
       <p class="footer-copy">© 2025 KritiKaKanvas. Made with ❤️ and paint.</p>
     </div>
   </footer>
+
+  <!-- Premium Framed Canvas Lightbox Modal -->
+  <div id="gallery-lightbox" class="lightbox-overlay" aria-hidden="true" role="dialog">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <div class="lightbox-wall-glow"></div>
+      <div class="canvas-frame-container">
+        <!-- Floating Canvas Frame Simulation -->
+        <div class="canvas-wood-frame">
+          <div class="canvas-inner-shadow"></div>
+          <div class="canvas-texture-layer"></div>
+          <img id="lightbox-img" class="lightbox-framed-img" src="" alt="Framed Artwork" />
+        </div>
+      </div>
+      <div class="lightbox-details">
+        <h3 id="lightbox-title" class="lightbox-art-title">Artwork Title</h3>
+        <p id="lightbox-desc" class="lightbox-art-desc">Detailed story behind the painting...</p>
+        <span id="lightbox-tag" class="lightbox-art-tag">Category</span>
+      </div>
+    </div>
+  </div>
 
   <script src="shop.js"></script>
 </body>

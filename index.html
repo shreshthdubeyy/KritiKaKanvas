@@ -40,11 +40,11 @@
 
   <!-- ====== HERO ====== -->
   <section id="hero" class="hero">
-    <img src="images/hero-rug.jpg" alt="Persian rug" class="hero-rug" />
+    <img src="images/hero/hero-rug.jpg" alt="Persian rug" class="hero-rug" />
     <div class="hero-overlay"></div>
 
-    <img src="images/mandala.png" alt="" class="mandala mandala-tr" aria-hidden="true" />
-    <img src="images/mandala.png" alt="" class="mandala mandala-bl" aria-hidden="true" />
+    <img src="images/hero/mandala.png" alt="" class="mandala mandala-tr" aria-hidden="true" />
+    <img src="images/hero/mandala.png" alt="" class="mandala mandala-bl" aria-hidden="true" />
 
     <div class="hero-content">
       <h1 class="hero-art">ART</h1>
@@ -74,7 +74,7 @@
         <span class="behind-text">IS BEHIND<br>THE PAGE?</span>
       </div>
       <div class="artist-photo-wrap">
-        <img src="images/cat-portrait.png" alt="Kritika's cat companion" class="artist-photo" />
+        <img src="images/gallery/cat-portrait.png" alt="Kritika's cat companion" class="artist-photo" />
       </div>
     </div>
 
@@ -99,14 +99,8 @@
   <!-- ====== GALLERY ====== -->
   <section id="gallery" class="gallery">
     <div class="gallery-header">
-      <h2 class="gallery-title">Portfolio</h2>
+      <h2 class="gallery-title">Gallery</h2>
       <p class="gallery-sub">Every piece tells a unique story</p>
-      <div class="gallery-filters">
-        <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
-        <button class="filter-btn" data-filter="portrait" id="filter-portrait">Portraits</button>
-        <button class="filter-btn" data-filter="mandala" id="filter-mandala">Mandala</button>
-        <button class="filter-btn" data-filter="custom" id="filter-custom">Custom</button>
-      </div>
     </div>
     <div class="gallery-grid" id="gallery-grid"></div>
   </section>
@@ -148,7 +142,7 @@
   <!-- ====== CONTACT ====== -->
   <section id="contact" class="contact">
     <div class="contact-mandala-deco" aria-hidden="true">
-      <img src="images/mandala.png" alt="" />
+      <img src="images/hero/mandala.png" alt="" />
     </div>
     <div class="contact-inner">
       <div class="contact-left">
@@ -157,25 +151,22 @@
       </div>
 
 
-      <form class="contact-form" id="commission-form">
-        <!-- Formspree config fields -->
-        <input type="hidden" name="_subject" value="✨ New Commission Request — KritiKaKanvas" />
-        <input type="hidden" name="_replyto" value="" />
+      <form class="contact-form" id="commission-form" novalidate>
         <div class="form-row">
           <div class="form-group">
             <label for="f-name">Your Name</label>
-            <input type="text" id="f-name" name="name" placeholder="Priya Sharma" required data-fs-field />
-            <span class="fs-field-error" data-fs-error="name"></span>
+            <input type="text" id="f-name" name="name" placeholder="Priya Sharma" required />
+            <span class="fs-field-error" id="err-f-name"></span>
           </div>
           <div class="form-group">
             <label for="f-email">Email</label>
-            <input type="email" id="f-email" name="email" placeholder="you@example.com" required data-fs-field />
-            <span class="fs-field-error" data-fs-error="email"></span>
+            <input type="email" id="f-email" name="email" placeholder="you@example.com" required />
+            <span class="fs-field-error" id="err-f-email"></span>
           </div>
         </div>
         <div class="form-group">
           <label for="f-type">Type of Artwork</label>
-          <select id="f-type" name="type" data-fs-field>
+          <select id="f-type" name="type">
             <option value="">Select…</option>
             <option>Portrait</option>
             <option>Couple / Family Portrait</option>
@@ -187,22 +178,14 @@
         </div>
         <div class="form-group">
           <label for="f-story">Tell Me Your Story</label>
-          <textarea id="f-story" name="story" rows="5" placeholder="Share your vision…" required
-            data-fs-field></textarea>
-          <span class="fs-field-error" data-fs-error="story"></span>
+          <textarea id="f-story" name="story" rows="5" placeholder="Share your vision…" required></textarea>
+          <span class="fs-field-error" id="err-f-story"></span>
         </div>
-        <!-- Formspree banners inside the form -->
-        <div data-fs-success class="fs-success" id="fs-success"></div>
-        <div data-fs-error class="fs-error" id="fs-error"></div>
-        <button type="submit" id="btn-submit" class="btn-gold" data-fs-submit-btn>Send My Story →</button>
+        <!-- Success and Error alerts inside the form -->
+        <div class="fs-success" id="fs-success" style="display:none"></div>
+        <div class="fs-error" id="fs-error" style="display:none"></div>
+        <button type="submit" id="btn-submit" class="btn-gold">Send My Story →</button>
       </form>
-
-      <!-- Formspree init -->
-      <script>
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { formElement: '#commission-form', formId: 'xpqnaboz' });
-      </script>
-      <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     </div>
   </section>
 
@@ -238,7 +221,7 @@
           </svg>
           @kri.ating_art
         </a>
-        <a href="mailto:attrekritika08@gmail.com" id="footer-email" aria-label="Email">
+        <a href="mailto:kritikakanvas@gmail.com" id="footer-email" aria-label="Email">
           <svg class="brand-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path fill="#EA4335" d="M6 40h6V22.5L4 17v21c0 1.1.9 2 2 2z" />
             <path fill="#34A853" d="M36 40h6c1.1 0 2-.9 2-2V17l-8 5.5z" />
@@ -246,7 +229,7 @@
             <path fill="#4285F4" d="M12 22.5V10l12 8 12-8v12.5L24 30z" />
             <path fill="#C5221F" d="M4 12v5.5l8 5.5V10L7.8 9.6C5.8 8.1 4 9.5 4 12z" />
           </svg>
-          attrekritika08@gmail.com
+          kritikakanvas@gmail.com
         </a>
       </div>
       <p class="footer-copy">© 2025 KritiKaKanvas. Made with ❤️ and paint.</p>
@@ -257,6 +240,32 @@
   <div id="toast" class="toast" role="alert" aria-live="polite">
     <span class="toast-icon">🎨</span>
     <span class="toast-msg">Message sent! I'll be in touch soon.</span>
+  </div>
+
+  <!-- Premium Framed Canvas Lightbox Modal -->
+  <div id="gallery-lightbox" class="lightbox-overlay" aria-hidden="true" role="dialog">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <div class="lightbox-wall-glow"></div>
+      <div class="canvas-frame-container">
+        <!-- Floating Canvas Frame Simulation -->
+        <div class="canvas-wood-frame">
+          <div class="canvas-inner-shadow"></div>
+          <div class="canvas-texture-layer"></div>
+          <img id="lightbox-img" class="lightbox-framed-img" src="" alt="Framed Artwork" />
+        </div>
+      </div>
+      <div class="lightbox-details">
+        <h3 id="lightbox-title" class="lightbox-art-title">Artwork Title</h3>
+        <p id="lightbox-desc" class="lightbox-art-desc">Detailed story behind the painting...</p>
+        <span id="lightbox-tag" class="lightbox-art-tag">Category</span>
+      </div>
+    </div>
   </div>
 
   <script src="main.js"></script>

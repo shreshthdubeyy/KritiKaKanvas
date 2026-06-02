@@ -315,13 +315,17 @@
     });
 
     /* ── Form validation & place order ── */
-    document.getElementById('btn-place-order')?.addEventListener('click', () => {
+    /* Replace this URL once you deploy the Google Apps Script web app */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLZ_ikhIN5uvQPH2J__N8WZ3xClcMQjZqRb5ttf364wQUhBZ0r5s14NmpjlPvr-lbb/exec';
+
+    document.getElementById('btn-place-order')?.addEventListener('click', async () => {
       const name    = document.getElementById('co-name')?.value.trim();
       const email   = document.getElementById('co-email')?.value.trim();
       const phone   = document.getElementById('co-phone')?.value.trim();
       const address = document.getElementById('co-address')?.value.trim();
       const city    = document.getElementById('co-city')?.value.trim();
       const pincode = document.getElementById('co-pincode')?.value.trim();
+      const state   = document.getElementById('co-state')?.value;
 
       let valid = true;
       const setErr = (id, msg) => {
@@ -338,15 +342,44 @@
 
       if (!valid) return;
 
-      // Clear cart
-      localStorage.removeItem(CART_KEY);
+      /* Build order payload */
+      const subtotal      = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const shipping      = subtotal >= 999 ? 0 : 99;
+      const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value || 'cod';
 
-      // Show confirmation
-      document.getElementById('checkout-grid').style.display    = 'none';
-      document.querySelector('.checkout-title').style.display   = 'none';
+      const orderData = {
+        name, email, phone, address, city,
+        state:         state || '',
+        pincode,
+        items:         JSON.stringify(cart),
+        total:         subtotal + shipping,
+        paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : paymentMethod.toUpperCase()
+      };
+
+      /* Show loading on button */
+      const btn = document.getElementById('btn-place-order');
+      btn.textContent   = 'Placing Order…';
+      btn.disabled      = true;
+      btn.style.opacity = '0.7';
+
+      /* POST to Google Apps Script → saves to Sheet + sends Brevo emails */
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method:  'POST',
+          mode:    'no-cors',   /* required for Apps Script; POST goes through even though response is opaque */
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(orderData)
+        });
+      } catch (err) {
+        console.warn('Order submitted (no-cors warning is expected):', err.message);
+      }
+
+      /* Clear cart and show confirmation */
+      localStorage.removeItem(CART_KEY);
+      document.getElementById('checkout-grid').style.display     = 'none';
+      document.querySelector('.checkout-title').style.display    = 'none';
       document.querySelector('.checkout-subtitle').style.display = 'none';
       document.getElementById('order-confirmed').classList.add('visible');
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 

@@ -5,7 +5,7 @@
 
 // ── PRODUCT CATALOGUE ────────────────────────────────────────
 // To add a product: copy any object below, give it a new id,
-// fill in name/desc/price/tag and drop the image in images/.
+// fill in name/desc/price/tag and drop the image in images/shop/.
 // tag options: 'prints' | 'originals' | 'custom' | 'kits'
 // badge options: 'Bestseller' | 'New' | 'Limited' | 'Original' |
 //                'Made to Order' | 'Fan Fave' | null
@@ -15,90 +15,90 @@ const products = [
   {
     id: 1,
     name: 'Folk Medallion Print',
-    desc: 'Archival quality • A3 size • Limited run of 50',
+    desc: 'A stunning archival A3 print of our intricate hand-painted folk medallion. Features elegant geometric symmetry, warm golden hues, and deep terracotta borders on heavy-grain cotton rag paper.',
     price: 899,
     originalPrice: 1200,
     tag: 'prints',
     badge: 'Bestseller',
     emoji: '🌸',
-    img: 'images/folk-medallion.png',
+    img: 'images/shop/folk-medallion.png',
   },
   {
     id: 2,
     name: 'Blue Kalamkari Panel',
-    desc: 'Original hand-painted • Signed & dated by artist',
+    desc: 'An authentic, original hand-painted Kalamkari folk panel on canvas. Detailed with traditional indigo blue pigments, fine black ink outlines, and floral patterns. Hand-signed and dated by the artist.',
     price: 2499,
     originalPrice: null,
     tag: 'originals',
     badge: 'Original',
     emoji: '🎋',
-    img: 'images/folk-panel-blue.png',
+    img: 'images/shop/folk-panel-blue.png',
   },
   {
     id: 3,
     name: 'Crimson Kalamkari Panel',
-    desc: 'Original hand-painted • Signed & dated by artist',
+    desc: 'An original, hand-painted Kalamkari panel. Crafted with rich crimson and terracotta dyes, depicting organic flowing creepers and traditional geometric framing. Signed and ready for framing.',
     price: 2499,
     originalPrice: null,
     tag: 'originals',
     badge: null,
     emoji: '🌺',
-    img: 'images/folk-panel-red.png',
+    img: 'images/shop/folk-panel-red.png',
   },
   {
     id: 4,
     name: 'Mandala Art Print',
-    desc: 'Sacred geometry on cotton rag paper • A4 size',
+    desc: 'An A4-size print of our sacred geometry mandala. Intricately drawn lines representing cosmic harmony, peace, and spiritual focus, printed on premium acid-free cotton rag paper.',
     price: 599,
     originalPrice: 799,
     tag: 'prints',
     badge: 'New',
     emoji: '✨',
-    img: 'images/product-mandala.png',
+    img: 'images/shop/product-mandala.png',
   },
   {
     id: 5,
     name: 'Custom Pet Portrait',
-    desc: 'Made to order • Oil on canvas • 2–3 week delivery',
+    desc: 'A personalized, custom oil-on-canvas painting of your beloved pet! Immortalize your furry friend\'s unique expression and personality. 2–3 weeks delivery from photo reference.',
     price: 2999,
     originalPrice: null,
     tag: 'custom',
     badge: 'Made to Order',
     emoji: '🐾',
-    img: 'images/cat-portrait.png',
+    img: 'images/gallery/cat-portrait.png',
   },
   {
     id: 6,
     name: 'Folk Art Kit',
-    desc: 'Inks, brushes, block stamps & folk art reference guide',
+    desc: 'The ultimate DIY starter kit! Includes 5 professional folk pigment jars, 3 fine camel-hair brushes, 4 custom hand-carved wooden block stamps, a canvas board, and a detailed reference guidebook.',
     price: 1299,
     originalPrice: 1699,
     tag: 'kits',
     badge: 'Limited',
     emoji: '🎨',
-    img: 'images/product-artkit.png',
+    img: 'images/shop/product-artkit.png',
   },
   {
     id: 7,
     name: 'Custom Sneakers',
-    desc: 'Hand-painted folk motifs on your sneakers • 3–4 weeks',
+    desc: 'Step out in style with custom hand-painted sneakers! We paint authentic Indian folk motifs, florals, or mandalas directly on your shoes using water-resistant acrylic leather paints.',
     price: 3999,
     originalPrice: null,
     tag: 'custom',
     badge: 'Fan Fave',
     emoji: '👟',
-    img: 'images/product-sneakers.png',
+    img: 'images/shop/product-sneakers.png',
   },
   {
     id: 8,
     name: 'Couple Portrait',
-    desc: 'Made to order • Acrylic on canvas • 3–4 week delivery',
+    desc: 'A custom, hand-painted couple portrait capturing a tender embrace in a warm, romantic impressionist style on stretched linen canvas. An unforgettable keepsake of you and your partner.',
     price: 3499,
     originalPrice: null,
     tag: 'custom',
     badge: null,
     emoji: '💑',
-    img: null, // add your image here
+    img: 'images/gallery/red-white-hearts.jpeg',
   },
 ];
 
@@ -276,25 +276,22 @@ function badgeClass(badge) {
 }
 
 function buildProductCard(product, index) {
-  const badgeHTML = product.badge
-    ? `<span class="product-badge ${badgeClass(product.badge)}">${product.badge}</span>`
-    : '';
-
-  const origHTML = product.originalPrice
-    ? `<span class="product-price-original">₹${product.originalPrice.toLocaleString('en-IN')}</span>`
-    : '';
-
   const imgHTML = product.img
-    ? `<img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy"
+    ? `<img src="${product.img}" alt="${product.name}" class="g-card-img" loading="lazy"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
     : '';
 
   const phHTML = `
-    <div class="product-img-placeholder"
-         style="background: linear-gradient(135deg, ${placeholderColor(index)}cc, ${placeholderColor(index)}44);
-                ${product.img ? 'display:none' : ''}">
-      <span>${product.emoji || '🎨'}</span>
-      <span class="ph-label">Coming Soon</span>
+    <div class="g-card-placeholder" style="${product.img ? 'display:none' : ''}">
+      <span class="placeholder-emoji">${product.emoji || '🎨'}</span>
+      <span class="placeholder-label">Coming Soon</span>
+    </div>`;
+
+  const cardBackHTML = `
+    <div class="g-card-back-content">
+      <h4 class="product-back-story-title">Artwork Details</h4>
+      <p class="product-back-story-body">${product.desc}</p>
+      <button class="g-card-back-cta btn-view-framed" aria-label="View Framed Canvas">View Framed ➔</button>
     </div>`;
 
   const card = document.createElement('div');
@@ -303,25 +300,44 @@ function buildProductCard(product, index) {
   card.style.animationDelay = `${index * 0.07}s`;
 
   card.innerHTML = `
-    <div class="product-img-wrap">
-      ${imgHTML}
-      ${phHTML}
-      ${badgeHTML}
+    <div class="g-card">
+      <div class="g-card-inner">
+        <div class="g-card-front">
+          ${imgHTML}
+          ${phHTML}
+        </div>
+        <div class="g-card-back">
+          ${cardBackHTML}
+        </div>
+      </div>
     </div>
     <div class="product-info">
       <h3 class="product-name">${product.name}</h3>
       <p class="product-desc">${product.desc}</p>
       <div class="product-price-row">
-        <span>
-          <span class="product-price">₹${product.price.toLocaleString('en-IN')}</span>
-          ${origHTML}
-        </span>
-        <button class="btn-add-cart" id="add-to-cart-${product.id}"
-                onclick="addToCart(${product.id})" aria-label="Add ${product.name} to cart">
-          Add to Cart +
+        <span class="product-price">₹${product.price.toLocaleString('en-IN')}</span>
+        <button class="btn-add-cart-uiverse" onclick="addToCart(${product.id})" aria-label="Add ${product.name} to cart">
+          <div class="cat-avatar"></div>
+          <span class="now">now!</span>
+          <span class="play">Add to Cart</span>
         </button>
       </div>
     </div>`;
+
+  // Attach virtual framed lightbox click handler to the 3D card
+  const gCard = card.querySelector('.g-card');
+  if (gCard) {
+    gCard.addEventListener('click', () => {
+      if (product.img) {
+        openLightbox({
+          src: product.img,
+          title: product.name,
+          desc: product.desc,
+          tag: product.tag
+        });
+      }
+    });
+  }
 
   return card;
 }
@@ -374,3 +390,49 @@ hamburger?.addEventListener('click', () => navLinks?.classList.toggle('open'));
 renderProducts('all');
 renderCartItems();
 updateCartBadge();
+
+// ── PREMIUM VIRTUAL CANVAS LIGHTBOX ────────────────────────────
+function openLightbox(item) {
+  const lightbox = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('lightbox-img');
+  const title = document.getElementById('lightbox-title');
+  const desc = document.getElementById('lightbox-desc');
+  const tag = document.getElementById('lightbox-tag');
+
+  if (!lightbox || !img) return;
+
+  img.src = item.src;
+  img.alt = item.title;
+  if (title) title.textContent = item.title;
+  if (desc) desc.textContent = item.desc || '';
+  if (tag) tag.textContent = item.tag;
+
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden'; // Prevent main page scrolling
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('gallery-lightbox');
+  if (!lightbox) return;
+  
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = ''; // Restore main page scrolling
+}
+
+// Lightbox event listeners
+document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+document.getElementById('gallery-lightbox')?.addEventListener('click', (e) => {
+  // Close only if clicking outside the wood frame container itself
+  if (e.target.id === 'gallery-lightbox' || e.target.classList.contains('lightbox-content') || e.target.classList.contains('canvas-frame-container')) {
+    closeLightbox();
+  }
+});
+// Support Esc key to close
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLightbox();
+  }
+});
+

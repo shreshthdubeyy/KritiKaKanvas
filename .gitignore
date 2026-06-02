@@ -1,0 +1,9 @@
+# Ignore local backend files containing secret keys
+backend/
+
+# Ignore system/OS temp files
+Thumbs.db
+.DS_Store
+
+# Ignore portable git/scratch folder
+scratch/

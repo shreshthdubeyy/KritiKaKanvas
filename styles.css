@@ -446,142 +446,93 @@ a {
 }
 
 .g-card {
-  border-radius: 12px;
-  overflow: hidden;
   position: relative;
-  background: #1e1e30;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  aspect-ratio: 4/3;
+  perspective: 1500px;
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.g-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+/* 3D Inner Container that handles the flip */
+.g-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover flip trigger */
+.g-card:hover .g-card-inner {
+  transform: rotateY(180deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
+}
+
+/* Card sides */
+.g-card-front,
+.g-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Front Side: Pure Media (Borderless & Uniform) */
+.g-card-front {
+  background: #12121f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .g-card-img {
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s;
 }
 
-.g-card:hover .g-card-img {
-  transform: scale(1.04);
-}
-
-.g-card-placeholder {
-  width: 100%;
-  aspect-ratio: 4/3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  transition: transform 0.5s;
-}
-
-.g-card:hover .g-card-placeholder {
-  transform: scale(1.04);
-}
-
-/* Instagram link card */
-.g-card-insta-link {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4/3;
-  text-decoration: none;
-}
-
-.g-card-insta-bg {
+.g-card-front-social {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1a0a2e 0%, #2d1040 50%, #1a0a2e 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  transition: background 0.3s;
+  padding: 1.5rem;
 }
 
-.g-card:hover .g-card-insta-bg {
-  background: linear-gradient(135deg, #2d1040 0%, #4a1a6a 50%, #2d1040 100%);
+.g-card-front-insta {
+  background: linear-gradient(135deg, #1f0b35, #0f071f);
 }
 
-.insta-logo {
-  width: 56px;
-  height: 56px;
-  transition: transform 0.3s;
+.g-card-front-yt {
+  background: linear-gradient(135deg, #2b0808, #140404);
 }
 
-.g-card:hover .insta-logo {
-  transform: scale(1.12);
-}
-
-.insta-cta {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* YouTube link card */
-.g-card-yt-link {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4/3;
-  text-decoration: none;
-}
-
-.g-card-yt-bg {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1a0a0a 0%, #2d0a0a 50%, #1a0a0a 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  transition: background 0.3s;
-}
-
-.g-card:hover .g-card-yt-bg {
-  background: linear-gradient(135deg, #2d0a0a 0%, #5a0000 50%, #2d0a0a 100%);
-}
-
-.yt-logo {
-  width: 60px;
-  height: 60px;
-  transition: transform 0.3s;
-}
-
-.g-card:hover .yt-logo {
-  transform: scale(1.12);
-}
-
-.yt-cta {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* Placeholder card */
+/* Placeholder card front */
 .g-card-placeholder {
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  transition: transform 0.5s;
-}
-
-.g-card:hover .g-card-placeholder {
-  transform: scale(1.04);
+  background: #0f0f1c;
+  border: 1px dashed rgba(212, 168, 67, 0.2);
+  border-radius: 12px;
 }
 
 .placeholder-emoji {
@@ -593,30 +544,98 @@ a {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(212, 168, 67, 0.45);
 }
 
-.g-card-info {
-  padding: 0.9rem 1rem;
+/* Back Side: Tactile Story Reverse */
+.g-card-back {
+  background: linear-gradient(145deg, #16223d, #0b1120);
+  color: #e8e0d0;
+  transform: rotateY(180deg);
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border: 1px solid rgba(212, 168, 67, 0.15);
+}
+
+.g-card-back-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
-.g-card-title {
-  font-size: 0.88rem;
-  color: #ddd;
+.g-card-back-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #d4a843;
+  margin-top: 0.2rem;
+  letter-spacing: 0.03em;
 }
 
-.g-card-tag {
-  font-size: 0.7rem;
+.g-card-back-story {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #c8c0b5;
+  margin: 0.8rem 0;
+  font-style: italic;
+  max-width: 95%;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.g-card-back-cta {
+  display: inline-block;
+  padding: 0.45rem 1.2rem;
+  border-radius: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0.2rem;
+}
+
+.btn-insta {
+  background: linear-gradient(135deg, #c13584, #e1306c);
+  box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
+}
+
+.btn-insta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(225, 48, 108, 0.45);
+}
+
+.btn-yt {
+  background: linear-gradient(135deg, #c00, #ff3333);
+  box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
+}
+
+.btn-yt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(204, 0, 0, 0.45);
+}
+
+.g-card-back-tag {
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #d4a843;
-  border: 1px solid rgba(212, 168, 67, 0.4);
-  padding: 0.2rem 0.6rem;
-  border-radius: 10px;
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  padding: 0.25rem 0.8rem;
+  border-radius: 20px;
 }
 
 /* ===== PROCESS ===== */
@@ -1020,4 +1039,218 @@ a {
     min-width: 80%;
     max-width: 320px;
   }
+}
+
+/* ============================================================
+   🎨 TACTILE HAND-CRAFTED ARTISANAL UI UPGRADES (HOMEPAGE)
+   ============================================================ */
+
+/* Hand-stamped gallery filter buttons */
+.filter-btn {
+  border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px !important;
+}
+
+/* ============================================================
+   🖼️ PREMIUM VIRTUAL CANVAS WALL-LIGHTBOX SYSTEM
+   ============================================================ */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 7, 13, 0.88);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lightbox-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(1rem, 4vw, 2.5rem);
+  right: clamp(1rem, 4vw, 2.5rem);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  color: #d4a843;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox-close:hover {
+  background: rgba(212, 168, 67, 0.15);
+  transform: scale(1.08) rotate(90deg);
+  border-color: #d4a843;
+}
+
+.lightbox-content {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10000;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox-overlay.open .lightbox-content {
+  transform: translateY(0) scale(1);
+}
+
+/* Wall Spotlight Ambient Glow Effect */
+.lightbox-wall-glow {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 168, 67, 0.15) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Framed Canvas 3D Perspective Container */
+.canvas-frame-container {
+  perspective: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* 3D shadow box/wood canvas frame */
+.canvas-wood-frame {
+  position: relative;
+  background: #14110f; /* Matte black charcoal wood color */
+  border: 14px solid #1c1815; /* Heavy wood frame border width */
+  box-shadow: 
+    inset 0 0 0 2px rgba(212, 168, 67, 0.4), /* Inner Gold Bevel line */
+    0 15px 40px rgba(0, 0, 0, 0.85), /* Drop shadow on the wall */
+    0 5px 15px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Stretched linen fabric grain blended on top */
+.canvas-texture-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23canvas)'/%3E%3C/svg%3E");
+}
+
+/* Subtle inner vignette shadow inside frame */
+.canvas-inner-shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+  z-index: 3;
+}
+
+.lightbox-framed-img {
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+  z-index: 1;
+}
+
+/* Text and details layout below the frame */
+.lightbox-details {
+  text-align: center;
+  max-width: 600px;
+  animation: detailsFade 0.6s ease both;
+  animation-delay: 0.15s;
+}
+
+@keyframes detailsFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lightbox-art-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #d4a843; /* Gold accent */
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.lightbox-art-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(0.85rem, 2.5vw, 0.98rem);
+  line-height: 1.7;
+  color: #c8c0b5;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.lightbox-art-tag {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #d4a843;
+  border: 1px solid rgba(212, 168, 67, 0.35);
+  padding: 0.3rem 1.1rem;
+  border-radius: 30px;
+  background: rgba(212, 168, 67, 0.05);
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .canvas-wood-frame {
+    border-width: 8px;
+    max-height: 40vh;
+  }
+  .lightbox-framed-img {
+    max-height: 38vh;
+  }
+}
+
+/* Gold Outline View Framed CTA button on Card Backs */
+.btn-view-framed {
+  background: transparent !important;
+  border: 1px solid #d4a843 !important;
+  color: #d4a843 !important;
+  box-shadow: 0 4px 12px rgba(212, 168, 67, 0.15) !important;
+}
+
+.btn-view-framed:hover {
+  background: rgba(212, 168, 67, 0.12) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(212, 168, 67, 0.35) !important;
 }
