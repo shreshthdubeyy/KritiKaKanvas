@@ -221,12 +221,33 @@ function buildCard(item) {
 
 
   card.addEventListener('click', (e) => {
-    // If the click was on a social link (Instagram/YouTube), let the browser navigate
-    if (e.target.closest('a.g-card-back-cta')) {
-      return;
+    const isTouch = window.matchMedia('(hover: none)').matches;
+
+    if (isTouch) {
+      // Touch behavior: flip card on tap, open lightbox only on back cta button
+      if (e.target.closest('.g-card-back-cta')) {
+        if (e.target.closest('a.g-card-back-cta')) {
+          return; // Let links navigate
+        }
+        openLightbox(item);
+        return;
+      }
+      
+      // Toggle flipped state on this card, close others
+      document.querySelectorAll('.g-card').forEach(c => {
+        if (c !== card) c.classList.remove('flipped');
+      });
+      card.classList.toggle('flipped');
+      e.stopPropagation();
+    } else {
+      // Desktop behavior: click directly opens lightbox unless it's a social link
+      if (e.target.closest('a.g-card-back-cta')) {
+        return;
+      }
+      openLightbox(item);
     }
-    openLightbox(item);
   });
+
 
   return card;
 }
@@ -256,10 +277,27 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-// ── Mobile hamburger ─────────────────────────────────────────
+// ── Mobile hamburger & Global Clicks ─────────────────────────
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
-if (hamburger) hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+if (hamburger) {
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+}
+
+// Auto-close menu when clicking links on mobile
+navLinks?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+  });
+});
+
+// Unflip cards when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.g-card')) {
+    document.querySelectorAll('.g-card').forEach(c => c.classList.remove('flipped'));
+  }
+});
+
 
 // ── COMMISSION FORM SUBMISSION (Apps Script + Brevo) ─────────────────
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLZ_ikhIN5uvQPH2J__N8WZ3xClcMQjZqRb5ttf364wQUhBZ0r5s14NmpjlPvr-lbb/exec';

@@ -327,17 +327,43 @@ function buildProductCard(product, index) {
   // Attach virtual framed lightbox click handler to the 3D card
   const gCard = card.querySelector('.g-card');
   if (gCard) {
-    gCard.addEventListener('click', () => {
-      if (product.img) {
-        openLightbox({
-          src: product.img,
-          title: product.name,
-          desc: product.desc,
-          tag: product.tag
+    gCard.addEventListener('click', (e) => {
+      const isTouch = window.matchMedia('(hover: none)').matches;
+
+      if (isTouch) {
+        // Touch behavior: flip card on tap, open lightbox only on view-framed button
+        if (e.target.closest('.g-card-back-cta')) {
+          if (product.img) {
+            openLightbox({
+              src: product.img,
+              title: product.name,
+              desc: product.desc,
+              tag: product.tag
+            });
+          }
+          return;
+        }
+
+        // Toggle flipped state on this card, close others
+        document.querySelectorAll('.g-card').forEach(c => {
+          if (c !== gCard) c.classList.remove('flipped');
         });
+        gCard.classList.toggle('flipped');
+        e.stopPropagation();
+      } else {
+        // Desktop behavior: click directly opens lightbox
+        if (product.img) {
+          openLightbox({
+            src: product.img,
+            title: product.name,
+            desc: product.desc,
+            tag: product.tag
+          });
+        }
       }
     });
   }
+
 
   return card;
 }
@@ -381,10 +407,25 @@ window.addEventListener('scroll', () => {
   nav?.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// ── MOBILE HAMBURGER ──────────────────────────────────────────
+// ── MOBILE HAMBURGER & Global Clicks ──────────────────────────
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.getElementById('nav-links');
 hamburger?.addEventListener('click', () => navLinks?.classList.toggle('open'));
+
+// Auto-close menu when clicking links on mobile
+navLinks?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks?.classList.remove('open');
+  });
+});
+
+// Unflip cards when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.g-card')) {
+    document.querySelectorAll('.g-card').forEach(c => c.classList.remove('flipped'));
+  }
+});
+
 
 // ── INIT ──────────────────────────────────────────────────────
 renderProducts('all');

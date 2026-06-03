@@ -469,11 +469,20 @@ a {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
-/* Hover flip trigger */
-.g-card:hover .g-card-inner {
+/* Hover flip trigger for devices with hover support */
+@media (hover: hover) {
+  .g-card:hover .g-card-inner {
+    transform: rotateY(180deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* Touch flip trigger via class */
+.g-card.flipped .g-card-inner {
   transform: rotateY(180deg);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
 }
+
 
 /* Card sides */
 .g-card-front,
